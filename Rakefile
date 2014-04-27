@@ -1,4 +1,4 @@
-desc "Runs the specs [EMPTY]"
+desc "Runs the specs JFObjectMapping"
 task :spec do
   # Provide your own implementation
 end
