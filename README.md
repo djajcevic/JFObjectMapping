@@ -15,7 +15,7 @@ it simply add the following line to your Podfile:
 
 ## Usage
 
-First, update your model to extend JFObject class, eg.:
+First, update your model to extend JFObject class and implement +load method, eg.:
 
 ```
 #import "JFObject.h"
@@ -31,6 +31,38 @@ First, update your model to extend JFObject class, eg.:
 @property(nonatomic, retain) NSArray         *testArray;
 @property(nonatomic, retain) NSSet           *testSet;
 @property(nonatomic, retain) JFTestSubObject *testSubObject;
+
+@end
+
+@implementation JFTestObject
+
++ (void)load
+{
+    [super load];
+    [[self metaData]
+            mapPropertyName:@"test_id" to:kInstanceIdPropertyName];
+}
+
+- (void)afterPropertiesSet
+{
+    [super afterPropertiesSet];
+    NSLog(@"Object populated: %@", self);
+}
+
+@end
+
+@interface JFTestSubObject : JFObject
+
+@property(nonatomic, retain) NSString *title;
+
+@end
+
+@implementation JFTestSubObject
+
++ (void)load
+{
+    [super load];
+}
 
 @end
 ```

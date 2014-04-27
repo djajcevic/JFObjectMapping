@@ -6,9 +6,7 @@
 #import "JFTestSubObject.h"
 
 
-@implementation JFTestSubObject {
-
-}
+@implementation JFTestSubObject
 
 + (void)load
 {

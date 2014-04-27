@@ -22,5 +22,4 @@
     NSLog(@"Object populated: %@", self);
 }
 
-
 @end
