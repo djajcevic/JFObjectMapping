@@ -101,7 +101,7 @@ Then you can use these cool features:
 @end
 ```
 
-See example for more details.
+See example (unit tests) for more details.
 
 ## Author
 
