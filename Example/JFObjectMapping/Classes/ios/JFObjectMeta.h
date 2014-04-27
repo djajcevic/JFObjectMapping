@@ -3,7 +3,7 @@
 //  JFObjectMapping
 //
 //  Created by Denis Jajčević on 16.9.2013..
-// Copyright (c) 2014 Denis Jajčević. All rights reserved.
+//  Copyright (c) 2014 Denis Jajčević. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
