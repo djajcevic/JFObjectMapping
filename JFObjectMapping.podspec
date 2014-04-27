@@ -1,15 +1,14 @@
 Pod::Spec.new do |s|
-  s.name             = "JFContext"
-  s.version          = "0.0.1"
-  s.summary          = "Plist context loader util."
+  s.name             = "JFObjectMapping"
+  s.version          = "0.0.2"
+  s.summary          = "Object to/from JSON mapping framework"
   s.description      = <<-DESC
-                       Simple util to load 'beans' from plist configuration file.
-                       For how to use, use '''pod try'''.
+                       Object to/from JSON mapping framework.
                        DESC
   s.homepage         = 'https://github.com/jfwork'
   s.license          = 'MIT'
   s.author           = { "Denis Jajčević" => "denis.jajcevic@gmail.com" }
-  s.source           = { :git => "https://github.com/jfwork/JFContext.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/jfwork/JFObjectMapping.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '5.0'
   s.requires_arc = true
