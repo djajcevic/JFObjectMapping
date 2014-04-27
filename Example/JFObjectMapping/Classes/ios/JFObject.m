@@ -111,18 +111,18 @@ static NSMutableDictionary *s_registeredClasses;
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
     JFObjectMeta *metaData = [[self class]
-                metaData];
+            metaData];
 
     NSArray *propertyNames = metaData.propertyNames;
 
-    NSMutableDictionary *propertyAttributes = metaData.propertyAttributes;
-    NSDictionary *propertyMapping = propertyAttributes[kSerializationPropertyMappingKey];
-    BOOL propertyMappingAvailable = propertyMapping != nil;
+    NSMutableDictionary *propertyAttributes      = metaData.propertyAttributes;
+    NSDictionary        *propertyMapping         = propertyAttributes[kSerializationPropertyMappingKey];
+    BOOL                propertyMappingAvailable = propertyMapping != nil;
 
     for (NSString *property in propertyNames) {
         if ([[self ignoredSerializationFields]
                 containsObject:property]) {
-                            continue;
+            continue;
         }
         id value = [self valueForKeyPath:property];
         if (value == nil) {
@@ -157,7 +157,7 @@ static NSMutableDictionary *s_registeredClasses;
 + (NSArray *)toDictionaryArray:(NSArray *)array
 {
     if (!array) {
-            return nil;
+        return nil;
     }
 
     NSMutableArray *result = [NSMutableArray array];
@@ -181,12 +181,12 @@ static NSMutableDictionary *s_registeredClasses;
 + (NSData *)toJsonArray:(NSArray *)array
 {
     if (!array || [array count] == 0) {
-            return nil;
+        return nil;
     }
 
     NSArray *resultArray = [self toDictionaryArray:array];
     if (!resultArray || [resultArray count] == 0) {
-            return nil;
+        return nil;
     }
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:resultArray options:0 error:nil];
@@ -202,7 +202,7 @@ static NSMutableDictionary *s_registeredClasses;
 + (NSString *)toJsonArrayString:(NSArray *)array
 {
     if (!array || [array count] == 0) {
-            return nil;
+        return nil;
     }
     NSData *data = [self toJsonArray:array];
 
@@ -226,17 +226,17 @@ static NSMutableDictionary *s_registeredClasses;
         propertyArrayItemClasses = propertyAttributes[kSerializationPropertyArrayItemsClassKey];
     }
 
-    NSDictionary *propertyMapping = propertyAttributes[kSerializationPropertyMappingKey];
-    BOOL propertyMappingAvailable = propertyMapping != nil;
+    NSDictionary *propertyMapping         = propertyAttributes[kSerializationPropertyMappingKey];
+    BOOL         propertyMappingAvailable = propertyMapping != nil;
 
     NSMutableArray *propertyNames = [[instance metaData].propertyNames mutableCopy];
 
     for (NSString *property in  propertyNames) {
 
-        id    value         = nil;
+        id value = nil;
 
         NSString *propertyName = property;
-        NSString *valueKey = nil;
+        NSString *valueKey     = nil;
         if (propertyMappingAvailable) {
             valueKey = propertyMapping[property];
         }
@@ -303,7 +303,7 @@ static NSMutableDictionary *s_registeredClasses;
 
     for (NSDictionary *dictionary in dictionaryArray) {
         if (![dictionary isKindOfClass:[NSDictionary class]]) {
-                    return dictionaryArray;
+            return dictionaryArray;
         }
         [array addObject:[self fromDictionary:dictionary]];
     }
@@ -336,12 +336,12 @@ static NSMutableDictionary *s_registeredClasses;
 + (instancetype)fromJsonString:(NSString *)string
 {
     if (!string) {
-            return nil;
+        return nil;
     }
 
     NSData *dataFromString = [string dataUsingEncoding:NSUTF8StringEncoding];
     if (!dataFromString) {
-            return nil;
+        return nil;
     }
 
     return [self fromJson:dataFromString];
@@ -350,12 +350,12 @@ static NSMutableDictionary *s_registeredClasses;
 + (NSArray *)fromJsonArrayString:(NSString *)string
 {
     if (!string) {
-            return nil;
+        return nil;
     }
 
     NSData *dataFromString = [string dataUsingEncoding:NSUTF8StringEncoding];
     if (!dataFromString) {
-            return nil;
+        return nil;
     }
 
     id instanceData = [NSJSONSerialization JSONObjectWithData:dataFromString options:0 error:nil];
@@ -369,7 +369,8 @@ static NSMutableDictionary *s_registeredClasses;
 
 - (NSString *)description
 {
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: [%@] %@", NSStringFromClass([self class]), _instanceId, _instanceDescription];
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: [%@] %@", NSStringFromClass([self class]),
+                                                                     _instanceId, _instanceDescription];
 
     [description appendString:@">"];
     return description;

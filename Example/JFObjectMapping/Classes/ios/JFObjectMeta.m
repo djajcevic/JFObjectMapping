@@ -128,15 +128,15 @@
     return classes;
 }
 
-- (void) mapPropertyName:(NSString *) instancePropertyName to:(NSString*) propertyName
+- (void)mapPropertyName:(NSString *)instancePropertyName to:(NSString *)propertyName
 {
     NSMutableDictionary *propertyAttributesMap = [self propertyAttributes];
-    NSMutableDictionary *propertyMapping = propertyAttributesMap[kSerializationPropertyMappingKey];
+    NSMutableDictionary *propertyMapping       = propertyAttributesMap[kSerializationPropertyMappingKey];
     if (propertyMapping == nil) {
         propertyMapping = [NSMutableDictionary new];
         propertyAttributesMap[kSerializationPropertyMappingKey] = propertyMapping;
     }
-    propertyMapping[propertyName] = instancePropertyName;
+    propertyMapping[propertyName]              = instancePropertyName;
 }
 
 @end
