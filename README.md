@@ -17,16 +17,19 @@ it simply add the following line to your Podfile:
 
 ## Usage
 
-First, update your model to extend JFObject class and implement +load method, eg.:
+First, import  class and implement +load method, eg.:
 
 ```
-#import "JFObject.h"
+#import <Foundation/Foundation.h>
+#import "NSObject+JFObjectMapping.h"
 
 @class JFTestSubObject;
 
 
-@interface JFTestObject : JFObject
+@interface JFTestObject : NSObject
 
+@property(nonatomic, retain) NSNumber        *instanceId;
+@property(nonatomic, retain) NSString        *instanceDescription;
 @property(nonatomic, retain) NSString        *testString;
 @property(nonatomic, retain) NSNumber        *testNumber;
 @property(nonatomic, retain) NSDictionary    *testDictionary;
@@ -36,34 +39,63 @@ First, update your model to extend JFObject class and implement +load method, eg
 
 @end
 
+#import "JFTestObject.h"
+#import "JFTestSubObject.h"
+#import "JFObjectMetaRepository.h"
+#import "JFIgnoreSerialization.h"
+
+
 @implementation JFTestObject
 
 + (void)load
 {
     [super load];
-    [[self metaData]
-            mapPropertyName:@"test_id" to:kInstanceIdPropertyName];
+    JFObjectMeta *meta = [[JFObjectMetaRepository defaultRepository]
+            registerClass:[self class]];
+    [meta mapPropertyName:@"test_id" to:kInstanceIdPropertyName];
+
+    JFIgnoreSerialization *ignoreSerialization = [[JFIgnoreSerialization alloc]
+            initWithFieldName:@"testNumber" andTargetClass:[self class]];
+    ignoreSerialization.mode = SERIALIZATION_ONLY;
+    [meta addSerializationAnnotation:ignoreSerialization];
 }
 
 - (void)afterPropertiesSet
 {
-    [super afterPropertiesSet];
     NSLog(@"Object populated: %@", self);
 }
 
 @end
 
-@interface JFTestSubObject : JFObject
+```
+
+```
+#import <Foundation/Foundation.h>
+#import "NSObject+JFObjectMapping.h"
+
+@interface JFTestSubObject : NSObject
 
 @property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSDate   *date;
 
 @end
+
+#import "JFTestSubObject.h"
+#import "JFObjectMetaRepository.h"
+#import "JFDateMapping.h"
+
 
 @implementation JFTestSubObject
 
 + (void)load
 {
     [super load];
+    JFObjectMeta *meta = [[JFObjectMetaRepository defaultRepository]
+            registerClass:[self class]];
+
+    JFDateMapping *dateMapping = [[JFDateMapping alloc]
+            initWithFieldName:@"date" andTargetClass:[self class]];
+    [meta addSerializationAnnotation:dateMapping];
 }
 
 @end
@@ -72,7 +104,6 @@ First, update your model to extend JFObject class and implement +load method, eg
 Then you can use these cool features:
 
 ```
-@protocol JFSerializableProtocol <NSObject>
 
 - (NSDictionary *)toDictionary;
 
@@ -100,7 +131,6 @@ Then you can use these cool features:
 
 - (void)afterPropertiesSet;
 
-@end
 ```
 
 See example (unit tests) for more details.
