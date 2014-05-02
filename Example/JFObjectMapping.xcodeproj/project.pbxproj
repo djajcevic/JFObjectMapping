@@ -9,27 +9,37 @@
 /* Begin PBXBuildFile section */
 		B3B8D06A6B8500C375C977C9 /* NSArray+JFObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DFD13D0B2D8BDEE08A68 /* NSArray+JFObjectMapping.m */; };
 		B3B8D0DEAFC3B4336C2748EF /* JFTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D15A1DAC6972E4824912 /* JFTestObject.m */; };
-		B3B8D2FB51F4220C148C99F7 /* JFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DDAF6A0296C137D7447A /* JFObject.m */; };
+		B3B8D19DCE12FC94FD84392D /* JFSerializationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D804D52523AB988660F4 /* JFSerializationAnnotation.m */; };
+		B3B8D1E4CFB038E1AB163D49 /* JFIgnoreSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DB903B1EABCB423743D7 /* JFIgnoreSerialization.m */; };
 		B3B8D340F8FAE9B2205BC06D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3B8DD0A33A489D9A59F6F5F /* InfoPlist.strings */; };
 		B3B8D3855424C12E1446397F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B8D2FE0F107D348D1823E4 /* Foundation.framework */; };
+		B3B8D4070F006B6ED1B87F8C /* NSObject+JFObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D0BA4C4459050B4EF47A /* NSObject+JFObjectMapping.m */; };
+		B3B8D4C03E0F75B668DE94C8 /* JFSerializationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D804D52523AB988660F4 /* JFSerializationAnnotation.m */; };
 		B3B8D5280294C282B31CDCB5 /* NSArray+JFObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DFD13D0B2D8BDEE08A68 /* NSArray+JFObjectMapping.m */; };
 		B3B8D55EB4BD666AEA5F40AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B8D2ED100B61CBBA700986 /* UIKit.framework */; };
 		B3B8D58CC5F9A5BCF3B7B1A5 /* JFObjectMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D2AA9B28E72C2B609717 /* JFObjectMeta.m */; };
 		B3B8D5A2B31A8CA155FFDA7B /* JFTestSubObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D8860516622CEEA15F96 /* JFTestSubObject.m */; };
+		B3B8D5B46885B59B64E417E5 /* JFAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DCA580FF65E597AB58F1 /* JFAnnotation.m */; };
 		B3B8D614AB22DE8E85FD30B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3B8D375054FCA7B89BA0C4A /* InfoPlist.strings */; };
 		B3B8D63471A31D680BACEECE /* JFTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D15A1DAC6972E4824912 /* JFTestObject.m */; };
 		B3B8D66830228DF1DF6BB649 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B8D2ED100B61CBBA700986 /* UIKit.framework */; };
-		B3B8D75B5303371A8F5C30B8 /* JFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DDAF6A0296C137D7447A /* JFObject.m */; };
+		B3B8D786FC1AAEB5F3B052A8 /* JFObjectMetaRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D01E9CFB9FD685B70470 /* JFObjectMetaRepository.m */; };
 		B3B8D82E0E4DF54025109BF4 /* NSDictionary+JFObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DA7AE9366EFA5FB9231F /* NSDictionary+JFObjectMapping.m */; };
+		B3B8D849AFB5DFCF8E5DE05D /* JFAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DCA580FF65E597AB58F1 /* JFAnnotation.m */; };
 		B3B8D88F428349A3748E76B7 /* JFObjectMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D2AA9B28E72C2B609717 /* JFObjectMeta.m */; };
 		B3B8D997222E637374B37D31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D8EDA0CB8F42735F6C5E /* main.m */; };
 		B3B8DBB27A74A1C68BF3DE3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B8D2FE0F107D348D1823E4 /* Foundation.framework */; };
 		B3B8DBC602EDAEE8107810C6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B8D6205025A911462C0D35 /* XCTest.framework */; };
+		B3B8DBCFD069AF43C413B820 /* NSObject+JFObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D0BA4C4459050B4EF47A /* NSObject+JFObjectMapping.m */; };
+		B3B8DC6120816BCE56FB77A6 /* JFDateMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D99E13B18E0EA3373C1D /* JFDateMapping.m */; };
 		B3B8DC7D41140E29DE42DC9E /* JFObjectMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D9D937619A35011CF970 /* JFObjectMappingTests.m */; };
 		B3B8DC867F89E61528BE9139 /* JFTestSubObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D8860516622CEEA15F96 /* JFTestSubObject.m */; };
 		B3B8DCBC59B8A5861D750750 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B8DAAB2B017CC07A7B6177 /* CoreGraphics.framework */; };
 		B3B8DCD0BE62625F3E6D24C8 /* NSDictionary+JFObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DA7AE9366EFA5FB9231F /* NSDictionary+JFObjectMapping.m */; };
+		B3B8DD2AA578F74F4156A2AC /* JFObjectMetaRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D01E9CFB9FD685B70470 /* JFObjectMetaRepository.m */; };
+		B3B8DDEE6186BFDC93D6CE30 /* JFDateMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D99E13B18E0EA3373C1D /* JFDateMapping.m */; };
 		B3B8DE8B10B9848AC0A53B8D /* JFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8D0C038AC5A992E7FC6A2 /* JFAppDelegate.m */; };
+		B3B8DFE482A8A2869BC6A540 /* JFIgnoreSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B8DB903B1EABCB423743D7 /* JFIgnoreSerialization.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B3B8D01E9CFB9FD685B70470 /* JFObjectMetaRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFObjectMetaRepository.m; sourceTree = "<group>"; };
 		B3B8D0716638A4D6E797E55D /* JFTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFTestObject.h; sourceTree = "<group>"; };
+		B3B8D0BA4C4459050B4EF47A /* NSObject+JFObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JFObjectMapping.m"; sourceTree = "<group>"; };
 		B3B8D0C038AC5A992E7FC6A2 /* JFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JFAppDelegate.m; sourceTree = "<group>"; };
 		B3B8D15A1DAC6972E4824912 /* JFTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFTestObject.m; sourceTree = "<group>"; };
 		B3B8D18E70FB31FA366F3C7A /* JFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JFAppDelegate.h; sourceTree = "<group>"; };
@@ -51,25 +63,33 @@
 		B3B8D21E898F438971D2B8D5 /* JFObjectMappingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JFObjectMappingTests-Info.plist"; sourceTree = "<group>"; };
 		B3B8D2AA9B28E72C2B609717 /* JFObjectMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFObjectMeta.m; sourceTree = "<group>"; };
 		B3B8D2ED100B61CBBA700986 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B3B8D2FCD9B79666F69F5744 /* JFIgnoreSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFIgnoreSerialization.h; sourceTree = "<group>"; };
 		B3B8D2FE0F107D348D1823E4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3B8D3CD30C174078FB6AF29 /* NSArray+JFObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JFObjectMapping.h"; sourceTree = "<group>"; };
 		B3B8D3D02B06A847AC6E434B /* JFObjectMapping-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "JFObjectMapping-Info.plist"; sourceTree = "<group>"; };
 		B3B8D43BC8DCAC79ACE42713 /* JFTestSubObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFTestSubObject.h; sourceTree = "<group>"; };
-		B3B8D5AC0EEE2E707E8E68AE /* JFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFObject.h; sourceTree = "<group>"; };
 		B3B8D6205025A911462C0D35 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B3B8D623E3351BACB5750FBA /* NSObject+JFObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JFObjectMapping.h"; sourceTree = "<group>"; };
 		B3B8D662AEA1AE99D7643787 /* JFSerializableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSerializableProtocol.h; sourceTree = "<group>"; };
+		B3B8D77CC8E1441862365AC2 /* JFObjectMetaRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFObjectMetaRepository.h; sourceTree = "<group>"; };
+		B3B8D804D52523AB988660F4 /* JFSerializationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSerializationAnnotation.m; sourceTree = "<group>"; };
 		B3B8D880F3D7981D3236A75A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3B8D8860516622CEEA15F96 /* JFTestSubObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFTestSubObject.m; sourceTree = "<group>"; };
 		B3B8D8AD12DF513394FAE19A /* JFObjectMapping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JFObjectMapping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B8D8EDA0CB8F42735F6C5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B3B8D8FA8C7970836BB66A88 /* JFObjectMapping-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JFObjectMapping-Prefix.pch"; sourceTree = "<group>"; };
+		B3B8D99E13B18E0EA3373C1D /* JFDateMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFDateMapping.m; sourceTree = "<group>"; };
 		B3B8D9D937619A35011CF970 /* JFObjectMappingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JFObjectMappingTests.m; sourceTree = "<group>"; };
 		B3B8DA7AE9366EFA5FB9231F /* NSDictionary+JFObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JFObjectMapping.m"; sourceTree = "<group>"; };
 		B3B8DAAB2B017CC07A7B6177 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B3B8DB903B1EABCB423743D7 /* JFIgnoreSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFIgnoreSerialization.m; sourceTree = "<group>"; };
+		B3B8DCA580FF65E597AB58F1 /* JFAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFAnnotation.m; sourceTree = "<group>"; };
 		B3B8DCB28DD96BE367EFB0AD /* JFObjectMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFObjectMeta.h; sourceTree = "<group>"; };
+		B3B8DCD26EF6CDCC154F20D9 /* JFSerializationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSerializationAnnotation.h; sourceTree = "<group>"; };
 		B3B8DD666850BF2D2B1DAACC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3B8DD804287F8FF85CFE58A /* JFObjectMappingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JFObjectMappingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3B8DDAF6A0296C137D7447A /* JFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFObject.m; sourceTree = "<group>"; };
+		B3B8DE12FD9964BD7836809D /* JFDateMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFDateMapping.h; sourceTree = "<group>"; };
+		B3B8DF576A9AA3AA5B6937E5 /* JFAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFAnnotation.h; sourceTree = "<group>"; };
 		B3B8DFD13D0B2D8BDEE08A68 /* NSArray+JFObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JFObjectMapping.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,9 +158,19 @@
 				B3B8DFD13D0B2D8BDEE08A68 /* NSArray+JFObjectMapping.m */,
 				B3B8D1FD4D920EB72BC68AAB /* NSDictionary+JFObjectMapping.h */,
 				B3B8DA7AE9366EFA5FB9231F /* NSDictionary+JFObjectMapping.m */,
-				B3B8DDAF6A0296C137D7447A /* JFObject.m */,
-				B3B8D5AC0EEE2E707E8E68AE /* JFObject.h */,
 				B3B8D662AEA1AE99D7643787 /* JFSerializableProtocol.h */,
+				B3B8D0BA4C4459050B4EF47A /* NSObject+JFObjectMapping.m */,
+				B3B8D623E3351BACB5750FBA /* NSObject+JFObjectMapping.h */,
+				B3B8D01E9CFB9FD685B70470 /* JFObjectMetaRepository.m */,
+				B3B8D77CC8E1441862365AC2 /* JFObjectMetaRepository.h */,
+				B3B8DCA580FF65E597AB58F1 /* JFAnnotation.m */,
+				B3B8DF576A9AA3AA5B6937E5 /* JFAnnotation.h */,
+				B3B8D804D52523AB988660F4 /* JFSerializationAnnotation.m */,
+				B3B8DCD26EF6CDCC154F20D9 /* JFSerializationAnnotation.h */,
+				B3B8D99E13B18E0EA3373C1D /* JFDateMapping.m */,
+				B3B8DE12FD9964BD7836809D /* JFDateMapping.h */,
+				B3B8DB903B1EABCB423743D7 /* JFIgnoreSerialization.m */,
+				B3B8D2FCD9B79666F69F5744 /* JFIgnoreSerialization.h */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -289,8 +319,13 @@
 				B3B8D06A6B8500C375C977C9 /* NSArray+JFObjectMapping.m in Sources */,
 				B3B8D82E0E4DF54025109BF4 /* NSDictionary+JFObjectMapping.m in Sources */,
 				B3B8D63471A31D680BACEECE /* JFTestObject.m in Sources */,
-				B3B8D75B5303371A8F5C30B8 /* JFObject.m in Sources */,
 				B3B8D5A2B31A8CA155FFDA7B /* JFTestSubObject.m in Sources */,
+				B3B8DBCFD069AF43C413B820 /* NSObject+JFObjectMapping.m in Sources */,
+				B3B8D786FC1AAEB5F3B052A8 /* JFObjectMetaRepository.m in Sources */,
+				B3B8D849AFB5DFCF8E5DE05D /* JFAnnotation.m in Sources */,
+				B3B8D4C03E0F75B668DE94C8 /* JFSerializationAnnotation.m in Sources */,
+				B3B8DC6120816BCE56FB77A6 /* JFDateMapping.m in Sources */,
+				B3B8D1E4CFB038E1AB163D49 /* JFIgnoreSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,8 +338,13 @@
 				B3B8DCD0BE62625F3E6D24C8 /* NSDictionary+JFObjectMapping.m in Sources */,
 				B3B8D58CC5F9A5BCF3B7B1A5 /* JFObjectMeta.m in Sources */,
 				B3B8D0DEAFC3B4336C2748EF /* JFTestObject.m in Sources */,
-				B3B8D2FB51F4220C148C99F7 /* JFObject.m in Sources */,
 				B3B8DC867F89E61528BE9139 /* JFTestSubObject.m in Sources */,
+				B3B8D4070F006B6ED1B87F8C /* NSObject+JFObjectMapping.m in Sources */,
+				B3B8DD2AA578F74F4156A2AC /* JFObjectMetaRepository.m in Sources */,
+				B3B8D5B46885B59B64E417E5 /* JFAnnotation.m in Sources */,
+				B3B8D19DCE12FC94FD84392D /* JFSerializationAnnotation.m in Sources */,
+				B3B8DDEE6186BFDC93D6CE30 /* JFDateMapping.m in Sources */,
+				B3B8DFE482A8A2869BC6A540 /* JFIgnoreSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

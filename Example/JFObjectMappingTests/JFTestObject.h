@@ -4,13 +4,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JFObject.h"
+
+
+#import "NSObject+JFObjectMapping.h"
 
 @class JFTestSubObject;
 
 
-@interface JFTestObject : JFObject
+@interface JFTestObject : NSObject
 
+@property(nonatomic, retain) NSNumber        *instanceId;
+@property(nonatomic, retain) NSString        *instanceDescription;
 @property(nonatomic, retain) NSString        *testString;
 @property(nonatomic, retain) NSNumber        *testNumber;
 @property(nonatomic, retain) NSDictionary    *testDictionary;

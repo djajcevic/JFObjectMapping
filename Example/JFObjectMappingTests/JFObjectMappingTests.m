@@ -32,14 +32,21 @@
 - (void)testExample
 {
     NSString     *propertyName            = @"test_id";
-    NSNumber     *propertyValue           = @4;
+    NSNumber     *propertyValue           = @3;
     NSString     *testStringPropertyName  = @"testString";
     NSString     *testStringPropertyValue = @"test";
-    JFTestSubObject *subObject = [JFTestSubObject fromDictionary:@{@"title" : @"test sub object"}];
-    JFTestObject *object                  = [JFTestObject fromDictionary:@{propertyName : propertyValue, testStringPropertyName : testStringPropertyValue, @"description" : @"test description", @"testSubObject" : subObject}];
+    NSString     *testNumberPropertyName = @"testNumber";
+    NSNumber     *testNumberPropertyValue = @7;
+    NSDate *date = [NSDate date];
+    NSTimeInterval dateLong = CACurrentMediaTime() * 1000;
+    JFTestSubObject *subObject = [JFTestSubObject fromDictionary:@{@"title" : @"test sub object", @"date":@(dateLong)}];
+
+    JFTestObject *object                  = [JFTestObject fromDictionary:@{propertyName : propertyValue, testStringPropertyName : testStringPropertyValue, @"description" : @"test description", @"testSubObject" : subObject, testNumberPropertyName:testNumberPropertyValue}];
+
     NSDictionary *dict                    = [object toDictionary];
     XCTAssertEqualObjects(propertyValue, dict[propertyName]);
     XCTAssertEqualObjects(testStringPropertyValue, dict[testStringPropertyName]);
+
 }
 
 @end

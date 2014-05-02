@@ -10,15 +10,18 @@
 
 #import "objc/runtime.h"
 
+@class JFAnnotation;
+@class JFSerializationAnnotation;
+
 #define kSerializationPropertyArrayItemsClassKey @"SerializationPropertyArrayItemsClassKey"
 #define kSerializationPropertyMappingKey @"SerializationPropertyMapping"
 
 @interface JFObjectMeta : NSObject
 
-@property(assign, nonatomic) Class               clazz;
-@property(strong, nonatomic) NSArray             *propertyNames;
-@property(strong, nonatomic) NSArray             *propertyClasses;
-@property(strong, nonatomic) NSMutableDictionary *propertyAttributes;
+@property(assign, nonatomic) Class targetClass;
+@property(strong, nonatomic) NSArray        *propertyNames;
+@property(strong, nonatomic) NSArray        *propertyClasses;
+@property(readonly, nonatomic) NSDictionary *propertyAttributes;
 
 - (id)initWithClass:(Class)clazz;
 
@@ -30,6 +33,10 @@
 - (Class)classForPropertyNamed:(NSString *)propertyName;
 
 + (NSArray *)itemClasses:(NSArray *)array;
+
+- (JFSerializationAnnotation *)serializationAnnotationForField:(NSString *)fieldName;
+
+- (void)addSerializationAnnotation:(JFSerializationAnnotation *)annotation;
 
 - (void)mapPropertyName:(NSString *)instancePropertyName to:(NSString *)propertyName;
 

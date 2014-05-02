@@ -5,6 +5,8 @@
 
 #import "JFTestObject.h"
 #import "JFTestSubObject.h"
+#import "JFObjectMetaRepository.h"
+#import "JFIgnoreSerialization.h"
 
 
 @implementation JFTestObject
@@ -12,13 +14,18 @@
 + (void)load
 {
     [super load];
-    [[self metaData]
-            mapPropertyName:@"test_id" to:kInstanceIdPropertyName];
+    JFObjectMeta *meta = [[JFObjectMetaRepository defaultRepository]
+            registerClass:[self class]];
+    [meta mapPropertyName:@"test_id" to:kInstanceIdPropertyName];
+
+    JFIgnoreSerialization *ignoreSerialization = [[JFIgnoreSerialization alloc]
+            initWithFieldName:@"testNumber" andTargetClass:[self class]];
+    ignoreSerialization.mode = SERIALIZATION_ONLY;
+    [meta addSerializationAnnotation:ignoreSerialization];
 }
 
 - (void)afterPropertiesSet
 {
-    [super afterPropertiesSet];
     NSLog(@"Object populated: %@", self);
 }
 

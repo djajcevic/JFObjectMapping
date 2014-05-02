@@ -4,6 +4,8 @@
 //
 
 #import "JFTestSubObject.h"
+#import "JFObjectMetaRepository.h"
+#import "JFDateMapping.h"
 
 
 @implementation JFTestSubObject
@@ -11,6 +13,12 @@
 + (void)load
 {
     [super load];
+    JFObjectMeta *meta = [[JFObjectMetaRepository defaultRepository]
+            registerClass:[self class]];
+
+    JFDateMapping *dateMapping = [[JFDateMapping alloc]
+            initWithFieldName:@"date" andTargetClass:[self class]];
+    [meta addSerializationAnnotation:dateMapping];
 }
 
 @end

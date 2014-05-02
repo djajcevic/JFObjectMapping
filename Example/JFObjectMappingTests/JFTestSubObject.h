@@ -4,11 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JFObject.h"
+#import "NSObject+JFObjectMapping.h"
 
-
-@interface JFTestSubObject : JFObject
+@interface JFTestSubObject : NSObject
 
 @property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) NSDate   *date;
 
 @end
