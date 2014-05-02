@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "JFObjectMapping"
-  s.version          = "0.0.2"
+  s.version          = "1.0.0"
   s.summary          = "Object to/from JSON mapping framework"
   s.description      = <<-DESC
                        Object to/from JSON mapping framework.
