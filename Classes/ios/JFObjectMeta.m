@@ -7,15 +7,20 @@
 //
 
 #import "JFObjectMeta.h"
+#import "JFSerializationAnnotation.h"
+#import "JFAnnotation.h"
+
+@interface JFObjectMeta ()
+
+@property(nonatomic, retain) NSMutableDictionary *_propertyAttributes;
+
+@end
 
 @implementation JFObjectMeta
 
 - (NSMutableDictionary *)propertyAttributes
 {
-    if (_propertyAttributes == nil) {
-        _propertyAttributes = [NSMutableDictionary new];
-    }
-    return _propertyAttributes;
+    return [__propertyAttributes copy];
 }
 
 - (id)initWithClass:(Class)clazz
@@ -30,7 +35,8 @@
 {
     self = [super init];
     if (self) {
-        self.clazz = clazz;
+        self.targetClass = clazz;
+        self._propertyAttributes = [NSMutableDictionary new];
 
         NSMutableArray *propertyArray   = [NSMutableArray array];
         NSMutableArray *propertyClasses = [NSMutableArray array];
@@ -128,15 +134,38 @@
     return classes;
 }
 
-- (void)mapPropertyName:(NSString *)instancePropertyName to:(NSString *)propertyName
+#pragma mark - mapping helpers
+
+-(JFSerializationAnnotation *) serializationAnnotationForField:(NSString*) fieldName
 {
-    NSMutableDictionary *propertyAttributesMap = [self propertyAttributes];
-    NSMutableDictionary *propertyMapping       = propertyAttributesMap[kSerializationPropertyMappingKey];
+    NSMutableDictionary *propertyMapping = [self serializationPropertyMapping];
+    JFSerializationAnnotation *annotation = propertyMapping[fieldName];
+    return annotation;
+}
+
+-(void) addSerializationAnnotation:(JFSerializationAnnotation *) annotation
+{
+    NSMutableDictionary *annotations = [self serializationPropertyMapping];
+    annotations[annotation.fieldName] = annotation;
+}
+
+- (NSMutableDictionary *)serializationPropertyMapping
+{
+    NSMutableDictionary *propertyMapping       = __propertyAttributes[kSerializationPropertyMappingKey];
     if (propertyMapping == nil) {
         propertyMapping = [NSMutableDictionary new];
-        propertyAttributesMap[kSerializationPropertyMappingKey] = propertyMapping;
+        __propertyAttributes[kSerializationPropertyMappingKey] = propertyMapping;
     }
-    propertyMapping[propertyName]              = instancePropertyName;
+    return propertyMapping;
+}
+
+- (void)mapPropertyName:(NSString *)propertyName to:(NSString *)instancePropertyName
+{
+    NSMutableDictionary *propertyMapping = [self serializationPropertyMapping];
+    JFSerializationAnnotation *customMapping = [[JFSerializationAnnotation alloc]
+            initWithFieldName:instancePropertyName andTargetClass:self.targetClass];
+    customMapping.mapsTo = propertyName;
+    propertyMapping[instancePropertyName]              = customMapping;
 }
 
 @end

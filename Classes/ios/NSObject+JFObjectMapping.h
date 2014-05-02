@@ -1,14 +1,22 @@
 //
-// Created by Denis Jajčević on 09.11.2013..
-//  Copyright (c) 2014 Denis Jajčević. All rights reserved.
+// Created by Denis Jajčević on 02.05.2014..
+// Copyright (c) 2014 JF. All rights reserved.
 //
-
 
 #import <Foundation/Foundation.h>
 
+#import "JFObjectMeta.h"
+
+#define kInstanceIdPropertyName @"instanceId"
+
+#define kInstanceDescriptionPropertyName @"instanceDescription"
+
 @class JFObjectMeta;
 
-@protocol JFSerializableProtocol <NSObject>
+@interface NSObject (JFObjectMapping)
+
++ (JFObjectMeta *)metaData;
+- (JFObjectMeta *)metaData;
 
 - (NSDictionary *)toDictionary;
 

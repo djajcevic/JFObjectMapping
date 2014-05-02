@@ -1,108 +1,29 @@
 //
-//  JFObject.m
-//  JFramework
-//
-//  Created by Denis Jajčević on 31.10.2013..
-//  Copyright (c) 2014. Denis Jajčević. All rights reserved.
+// Created by Denis Jajčević on 02.05.2014..
+// Copyright (c) 2014 JF. All rights reserved.
 //
 
-#import "JFObject.h"
-
-#pragma mark - category
-
-@interface JFObject ()
-
-
-@end
-
-#pragma mark - implementation
-
-@implementation JFObject
-
-static NSArray *s_internalIgnoredFields;
-
-static NSMutableDictionary *s_registeredClasses;
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.dictionary = [NSMutableDictionary dictionary];
-
-    }
-    return self;
-}
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-{
-    NSMethodSignature *sig = [[self class]
-            instanceMethodSignatureForSelector:@selector(returnValue:)];
-    return sig;
-}
-
-- (void)forwardInvocation:(NSInvocation *)anInvocation
-{
-    NSString *propery = NSStringFromSelector(anInvocation.selector);
-    id       value    = nil;
-    if ([propery hasPrefix:@"set"]) {
-        propery                     = [propery stringByReplacingOccurrencesOfString:@"set" withString:@""];
-        propery                     = [propery stringByReplacingOccurrencesOfString:@":" withString:@""];
-        NSRange  firstCharRange     = (NSRange) {0, 1};
-        NSString *propertyLowercase = [[propery substringToIndex:1]
-                lowercaseString];
-        propery = [propery stringByReplacingCharactersInRange:firstCharRange withString:propertyLowercase];
-        [anInvocation getArgument:&value atIndex:2];
-        if (value != nil) {
-            [self.dictionary setValue:value forKey:propery];
-        }
-    }
-    else {
-        value = self.dictionary[propery];
-        [anInvocation setReturnValue:&value];
-    }
-
-}
+#import "NSObject+JFObjectMapping.h"
+#import "JFObjectMeta.h"
+#import "JFObjectMetaRepository.h"
+#import "JFSerializationAnnotation.h"
+#import "JFIgnoreSerialization.h"
 
 
-/// dummy method
-- (id)returnValue:(id)arg
-{
-    return arg;
-}
-
-- (NSArray *)ignoredSerializationFields
-{
-    return s_internalIgnoredFields;
-}
-
-+ (void)load
-{
-    if (s_registeredClasses == nil) {
-        s_registeredClasses = [NSMutableDictionary dictionary];
-    }
-    if (!s_internalIgnoredFields) {
-        s_internalIgnoredFields = @[@"internalIgnoredFields", @"dictionary", @"ignoredSerializationFields"];
-    }
-    NSString *className = NSStringFromClass([self class]);
-    if (![[s_registeredClasses allKeys]
-            containsObject:className]) {
-        JFObjectMeta *metaData = [[JFObjectMeta alloc]
-                initWithClass:[self class] ignoreFields:s_internalIgnoredFields];
-        [s_registeredClasses setValue:metaData forKey:className];
-        NSLog(@"Registered class %@", className);
-    }
-}
+@implementation NSObject (JFObjectMapping)
 
 + (JFObjectMeta *)metaData
 {
-    NSString *className = NSStringFromClass([self class]);
-    return s_registeredClasses[className];
+    JFObjectMetaRepository *repository = [JFObjectMetaRepository defaultRepository];
+    JFObjectMeta           *meta       = [repository
+            metaDataForClass:(Class)
+                    [self class]];
+    return meta;
 }
 
 - (JFObjectMeta *)metaData
 {
-    return [[self class]
-            metaData];
+    return [self.class metaData];
 }
 
 
@@ -110,36 +31,39 @@ static NSMutableDictionary *s_registeredClasses;
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
-    JFObjectMeta *metaData = [[self class]
+    JFObjectMeta *meta = [[self class]
             metaData];
 
-    NSArray *propertyNames = metaData.propertyNames;
+    NSArray *propertyNames = meta.propertyNames;
 
-    NSMutableDictionary *propertyAttributes      = metaData.propertyAttributes;
+    NSMutableDictionary *propertyAttributes      = meta.propertyAttributes;
     NSDictionary        *propertyMapping         = propertyAttributes[kSerializationPropertyMappingKey];
     BOOL                propertyMappingAvailable = propertyMapping != nil;
 
     for (NSString *property in propertyNames) {
-        if ([[self ignoredSerializationFields]
-                containsObject:property]) {
-            continue;
-        }
         id value = [self valueForKeyPath:property];
+        JFSerializationAnnotation *annotation = [meta serializationAnnotationForField:property];
+
+        if ([annotation isKindOfClass:[JFIgnoreSerialization class]]) {
+            JFIgnoreSerialization *ignoreSerialization = (JFIgnoreSerialization *) annotation;
+            if (!ignoreSerialization.shouldSerialize) {
+                continue;
+            }
+        }
+
+        // do custom reverse annotation
+        if (annotation) {
+            value = annotation.mappingBlock(value, YES);
+        }
+        
         if (value == nil) {
             continue;
         }
-        Class jfObjectClass = [JFObject class];
-        Class valueClass    = [value class];
+        Class valueClass = [value class];
 
-        NSString *valueKey = nil;
-        if (propertyMappingAvailable) {
-            valueKey = propertyMapping[property];
-        }
-        if ([valueKey length] == 0) {
-            valueKey = property;
-        }
-
-        if ([valueClass isSubclassOfClass:jfObjectClass]) {
+        NSString *valueKey = [self getValueKey:meta propertyMappingAvailable:propertyMappingAvailable
+                property:property];
+        if ([valueClass metaData] != nil) {
             [dict setValue:[value toDictionary] forKey:valueKey];
         }
         else if ([valueClass isSubclassOfClass:[NSArray class]]) {
@@ -166,7 +90,7 @@ static NSMutableDictionary *s_registeredClasses;
         return result;
     }
 
-    for (JFObject *object in array) {
+    for (NSObject *object in array) {
         [result addObject:[object toDictionary]];
     }
 
@@ -217,7 +141,7 @@ static NSMutableDictionary *s_registeredClasses;
 {
     id           instance            = [[self class]
             new];
-    Class        jfObjectClass       = [JFObject class];
+    JFObjectMeta *meta               = [self metaData];
     NSDictionary *propertyAttributes = [[instance metaData]
             propertyAttributes];
 
@@ -236,13 +160,17 @@ static NSMutableDictionary *s_registeredClasses;
         id value = nil;
 
         NSString *propertyName = property;
-        NSString *valueKey     = nil;
-        if (propertyMappingAvailable) {
-            valueKey = propertyMapping[property];
+        JFSerializationAnnotation *annotation = [meta serializationAnnotationForField:property];
+
+        if ([annotation isKindOfClass:[JFIgnoreSerialization class]]) {
+            JFIgnoreSerialization *ignoreSerialization = (JFIgnoreSerialization *) annotation;
+            if (!ignoreSerialization.shouldDeserialize) {
+                continue;
+            }
         }
-        if ([valueKey length] == 0) {
-            valueKey = property;
-        }
+
+        NSString *valueKey     = [self getValueKey:meta propertyMappingAvailable:propertyMappingAvailable
+                property:property];
 
         Class propertyClass = [[self metaData]
                 classForPropertyNamed:propertyName];
@@ -262,10 +190,14 @@ static NSMutableDictionary *s_registeredClasses;
         else {
             value = dictionary[valueKey];
         }
-//        NSLog(@"Class:%@, property:%@, dictValueNil:%@", NSStringFromClass([self class]), property, @(value == nil));
+
+        if (annotation) {
+            value = annotation.mappingBlock(value, NO);
+        }
+
         if (value != nil) {
             if ([value isKindOfClass:[NSDictionary class]]) {
-                if ([propertyClass isSubclassOfClass:jfObjectClass]) {
+                if ([propertyClass metaData] != nil) {
                     id instanceValue = [propertyClass fromDictionary:value];
                     if (instanceValue) {
                         [instance setValue:instanceValue forKeyPath:propertyName];
@@ -279,7 +211,7 @@ static NSMutableDictionary *s_registeredClasses;
             else if ([value isKindOfClass:[NSArray class]]) {
                 if (propertyArrayItemClasses) {
                     Class arrayItemsClass = propertyArrayItemClasses[propertyName];
-                    if (arrayItemsClass && [arrayItemsClass isSubclassOfClass:jfObjectClass]) {
+                    if (arrayItemsClass && [arrayItemsClass metaData] != nil) {
                         id instanceValues = [arrayItemsClass fromDictionaryArray:value];
                         [instance setValue:instanceValues forKey:propertyName];
                     }
@@ -293,8 +225,31 @@ static NSMutableDictionary *s_registeredClasses;
             }
         }
     }
-    [instance afterPropertiesSet];
+    if ([instance respondsToSelector:@selector(afterPropertiesSet)]) {
+        [instance afterPropertiesSet];
+    }
     return instance;
+}
+
++ (NSString *)getValueKey:(JFObjectMeta *)meta propertyMappingAvailable:(BOOL)propertyMappingAvailable
+                 property:(NSString *)property
+{
+    NSString *valueKey = nil;
+    if (propertyMappingAvailable) {
+        JFSerializationAnnotation *annotation = [meta serializationAnnotationForField:property];
+        valueKey = annotation.mapsTo;
+    }
+    if ([valueKey length] == 0) {
+        valueKey = property;
+    }
+    return valueKey;
+}
+
+- (NSString *)getValueKey:(JFObjectMeta *)meta propertyMappingAvailable:(BOOL)propertyMappingAvailable
+                 property:(NSString *)property
+{
+    return [self.class getValueKey:meta propertyMappingAvailable:propertyMappingAvailable
+            property:property];
 }
 
 + (NSArray *)fromDictionaryArray:(NSArray *)dictionaryArray
@@ -366,15 +321,5 @@ static NSMutableDictionary *s_registeredClasses;
     }
     return nil;
 }
-
-- (NSString *)description
-{
-    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: [%@] %@", NSStringFromClass([self class]),
-                                                                     _instanceId, _instanceDescription];
-
-    [description appendString:@">"];
-    return description;
-}
-
 
 @end
