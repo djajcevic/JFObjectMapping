@@ -5,7 +5,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 #import "NSObject+JFObjectMapping.h"
 
 @class JFTestSubObject;
