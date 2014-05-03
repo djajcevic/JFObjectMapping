@@ -48,7 +48,7 @@
 {
     if ([value isKindOfClass:[NSNumber class]]) {
                 NSNumber *number = value;
-                long millis = number.longValue / 1000;
+                double millis = (number.doubleValue + 999) / 1000;
                 return [NSDate dateWithTimeIntervalSince1970:millis];
             }
     return [self.formatter dateFromString:value];
