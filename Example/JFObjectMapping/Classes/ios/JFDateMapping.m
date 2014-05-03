@@ -36,7 +36,7 @@
 {
     NSDate *date = value;
     if ([value isKindOfClass:[NSDate class]] && self.format == nil) {
-        long result = (long)date.timeIntervalSince1970 * 1000;
+        double result = (double)date.timeIntervalSince1970 * 1000;
         return @(result);
     }
     else {
