@@ -217,7 +217,7 @@
                     }
                 }
                 else {
-                    // TODO: logg message
+                    [instance setValue:value forKeyPath:propertyName];
                 }
             }
             else {
