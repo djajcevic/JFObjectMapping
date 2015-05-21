@@ -2,7 +2,7 @@
 //  JFObjectMeta.m
 //  JFObjectMapping
 //
-//  Created by Denis Jajčević on 16.9.2013..
+//  Created by Denis JajÄeviÄ‡ on 16.9.2013..
 //  Copyright (c) 2012 JF. All rights reserved.
 //
 
@@ -67,7 +67,7 @@
         const char *className       = property_copyAttributeValue(properties[i], "T");
         NSString   *classNameString = [[NSString alloc]
                 initWithCString:className encoding:NSUTF8StringEncoding];
-        if ([classNameString isEqualToString:@"c"]) {
+        if ([classNameString isEqualToString:@"c"] || [classNameString isEqualToString:@"B"]) {
             classNameString = @"NSNumber";
         }
         else if ([classNameString length] == 1) {
@@ -77,7 +77,7 @@
             classNameString = [classNameString substringWithRange:(NSRange) {2, classNameString.length - 3}];
         }
 
-        if (className != nil) {
+        if (className != nil && [classNameString length]) {
             [propertyArray addObject:propertyNameString];
             [propertyClasses addObject:classNameString];
         }
